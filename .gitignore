@@ -1,0 +1,27 @@
+# Archivos de entorno virtual
+env/
+*.pyc
+__pycache__/
+
+# Ignorar migraciones compiladas
+sicue/migrations/__pycache__/
+sicue_project/__pycache__/
+
+# Base de datos SQLite
+db.sqlite3
+
+# Archivos de configuración y secretos
+*.env
+
+# Archivos de migración
+*.log
+*.pot
+*.pyc
+*.pyo
+*.sqlite3
+
+# Archivos estáticos y de caché
+/static/
+
+
+

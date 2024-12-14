@@ -1,4 +1,5 @@
 from django.db import models
+from .choices import UNIVERSIDADES
 
 # Clase base: Usuario
 class Usuario(models.Model):
@@ -43,11 +44,28 @@ class Asignatura(models.Model):
     creditos = models.IntegerField()
     universidad = models.ForeignKey(Universidad, on_delete=models.CASCADE, related_name='asignaturas')
 
-# Clase Solicitud
+
 class Solicitud(models.Model):
-    idSolicitud = models.AutoField(primary_key=True)
-    estado = models.CharField(max_length=20)  # Ej. "Pendiente", "Aprobada"
-    estudiante = models.ForeignKey(Alumno, on_delete=models.CASCADE, related_name='solicitudes')
-    profesor = models.ForeignKey(Profesor, on_delete=models.CASCADE, null=True, blank=True)
-    universidadOrigen = models.ForeignKey(Universidad, on_delete=models.CASCADE, related_name='solicitudes_origen')
-    universidadDestino = models.ForeignKey(Universidad, on_delete=models.CASCADE, related_name='solicitudes_destino')
+    solicitante = models.ForeignKey(
+        Alumno, 
+        on_delete=models.CASCADE, 
+        related_name="solicitudes"
+    )  # Relación con Alumno
+    universidad_origen = models.CharField(
+        max_length=100,
+        choices=UNIVERSIDADES,
+        default='UCO'
+    )
+    universidad_destino = models.CharField(
+        max_length=100,
+        choices=UNIVERSIDADES,
+        default='UCO'
+    )
+    fecha_inicio = models.DateField()
+    fecha_fin = models.DateField(default='2024-12-31')
+    motivo = models.TextField()
+
+    def __str__(self):
+        return f"{self.universidad_origen} -> {self.universidad_destino}"
+
+

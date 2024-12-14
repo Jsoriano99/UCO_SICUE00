@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menú Estudiante</title>
+</head>
+<body>
+    <h1>Menú Estudiante</h1>
+    <p>Bienvenido, {{ request.session.usuario_email }}</p>
+    <a href="{% url 'crear_solicitud' %}">
+        <button>Crear Solicitud</button>
+    </a>
+    <a href="{% url 'listar_solicitudes' %}">
+        <button>Listar Solicitudes</button>
+    </a>
+
+</body>
+</html>
